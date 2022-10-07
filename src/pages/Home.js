@@ -1,5 +1,6 @@
 import React from 'react';
 import Categorias from '../componente/Categorias';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor() {
@@ -7,6 +8,7 @@ class Home extends React.Component {
 
     this.state = {
       pesquisa: '',
+      // items: [],
     };
   }
 
@@ -20,6 +22,7 @@ class Home extends React.Component {
     return (
       <>
         <input type="text" value={ pesquisa } onChange={ this.handleSearch } />
+        <Link data-testid="shopping-cart-button" to="/cart"> Carrinho de Compras </Link>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
