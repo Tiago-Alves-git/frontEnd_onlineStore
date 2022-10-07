@@ -1,15 +1,14 @@
-import React from "react";
+import React from 'react';
 
-class Cart extends React.Component{
-    render() {
-        const { items } = this.props
-        return(
-            <div>
-                <p data-testid="shopping-cart-empty-message">
-                Seu carrinho está vazio
-                </p>
-            </div>
-        )
-    }
+class Cart extends React.Component {
+  render() {
+    return (
+      <div>
+        <p data-testid="shopping-cart-empty-message">
+          Seu carrinho está vazio
+        </p>
+      </div>
+    );
+  }
 }
 export default Cart;

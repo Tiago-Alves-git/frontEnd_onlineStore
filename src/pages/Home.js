@@ -1,8 +1,8 @@
 import React from 'react';
-import Produtos from '../components/Produtos';
-import { getProductsFromCategoryAndQuery } from '../services/api';
-import Categorias from '../componente/Categorias';
 import { Link } from 'react-router-dom';
+import Produtos from '../components/Produtos';
+import Categorias from '../components/Categorias';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends React.Component {
   constructor() {
@@ -45,9 +45,9 @@ class Home extends React.Component {
         >
           Buscar produto
         </button>
-        
+
         <Link data-testid="shopping-cart-button" to="/cart"> Carrinho de Compras </Link>
-        
+
         {listaDeProdutos
           ? (
             <Produtos listaDeProdutos={ listaDeProdutos } />
