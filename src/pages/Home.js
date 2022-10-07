@@ -1,4 +1,6 @@
 import React from 'react';
+import Produtos from '../components/Produtos';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends React.Component {
   constructor() {
@@ -6,6 +8,8 @@ class Home extends React.Component {
 
     this.state = {
       pesquisa: '',
+      categoria: null,
+      listaDeProdutos: null,
     };
   }
 
@@ -14,15 +18,40 @@ class Home extends React.Component {
     this.setState({ pesquisa: value });
   };
 
+  handleSearchSubmit = async () => {
+    const { pesquisa, categoria } = this.state;
+    const result = await getProductsFromCategoryAndQuery(categoria, pesquisa);
+
+    this.setState({ listaDeProdutos: result.results });
+  };
+
   render() {
-    const { pesquisa } = this.state;
+    const { pesquisa, listaDeProdutos } = this.state;
     return (
-      <>
-        <input type="text" value={ pesquisa } onChange={ this.handleSearch } />
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-      </>
+      <div>
+        <input
+          data-testid="query-input"
+          type="text"
+          value={ pesquisa }
+          onChange={ this.handleSearch }
+        />
+        <button
+          data-testid="query-button"
+          type="button"
+          onClick={ this.handleSearchSubmit }
+        >
+          Buscar produto
+        </button>
+        {listaDeProdutos
+          ? (
+            <Produtos listaDeProdutos={ listaDeProdutos } />
+          )
+          : (
+            <p data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>
+          )}
+      </div>
     );
   }
 }
