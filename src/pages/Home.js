@@ -1,6 +1,8 @@
 import React from 'react';
 import Produtos from '../components/Produtos';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Categorias from '../componente/Categorias';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor() {
@@ -29,6 +31,7 @@ class Home extends React.Component {
     const { pesquisa, listaDeProdutos } = this.state;
     return (
       <div>
+        <Categorias />
         <input
           data-testid="query-input"
           type="text"
@@ -42,6 +45,9 @@ class Home extends React.Component {
         >
           Buscar produto
         </button>
+        
+        <Link data-testid="shopping-cart-button" to="/cart"> Carrinho de Compras </Link>
+        
         {listaDeProdutos
           ? (
             <Produtos listaDeProdutos={ listaDeProdutos } />
