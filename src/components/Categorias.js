@@ -1,5 +1,6 @@
 import React from 'react';
-import { getCategories } from '../services/api';
+import { getCategories, getProductById } from '../services/api';
+import Home from './SearchCategory';
 
 class Categorias extends React.Component {
   constructor() {
@@ -7,6 +8,7 @@ class Categorias extends React.Component {
 
     this.state = {
       listaCategorias: [],
+      productByCategory: [],
     };
   }
 
@@ -14,11 +16,19 @@ class Categorias extends React.Component {
     const resposta = await getCategories();
     this.setState({
       listaCategorias: resposta,
+      isFiltred: false,
     });
   }
 
+  handleSearchCategory = async ({ target }) => {
+    const { name } = target;
+    const request = await getProductById(name);
+    const resultSearch = request.results;
+    this.setState({ productByCategory: resultSearch, isFiltred: true });
+  };
+
   render() {
-    const { listaCategorias } = this.state;
+    const { listaCategorias, productByCategory, isFiltred } = this.state;
     return (
       <div>
         <ul>
@@ -26,11 +36,17 @@ class Categorias extends React.Component {
             <button
               type="button"
               key={ i }
+              name={ e.name }
               data-testid="category"
+              onClick={ this.handleSearchCategory }
             >
               {e.name}
             </button>))}
         </ul>
+        <Home
+          productByCategory={ productByCategory }
+          isFiltred={ isFiltred }
+        />
       </div>
     );
   }

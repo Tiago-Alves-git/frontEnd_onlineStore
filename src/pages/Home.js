@@ -29,6 +29,7 @@ class Home extends React.Component {
 
   render() {
     const { pesquisa, listaDeProdutos } = this.state;
+    const { productByCategory, isFiltred } = this.props;
     return (
       <div>
         <Categorias />
@@ -47,7 +48,7 @@ class Home extends React.Component {
         </button>
 
         <Link data-testid="shopping-cart-button" to="/cart"> Carrinho de Compras </Link>
-
+        { isFiltred }
         {listaDeProdutos
           ? (
             <Produtos listaDeProdutos={ listaDeProdutos } />
