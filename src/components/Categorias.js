@@ -1,7 +1,7 @@
 import React from 'react';
 import { getCategories, getProductById } from '../services/api';
-import Home from './SearchCategory';
 import '../style/Categorias.css';
+import SearchCategory from './SearchCategory';
 
 class Categorias extends React.Component {
   constructor() {
@@ -10,6 +10,7 @@ class Categorias extends React.Component {
     this.state = {
       listaCategorias: [],
       productByCategory: [],
+      isFiltred: false,
     };
   }
 
@@ -46,7 +47,7 @@ class Categorias extends React.Component {
             </button>))}
         </ul>
         {/* --------> Verificar a props <-------- */}
-        <Home
+        <SearchCategory
           productByCategory={ productByCategory }
           isFiltred={ isFiltred }
         />
