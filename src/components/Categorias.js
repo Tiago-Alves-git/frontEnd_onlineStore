@@ -1,6 +1,7 @@
 import React from 'react';
 import { getCategories, getProductById } from '../services/api';
 import Home from './SearchCategory';
+import '../style/Categorias.css';
 
 class Categorias extends React.Component {
   constructor() {
@@ -30,19 +31,21 @@ class Categorias extends React.Component {
   render() {
     const { listaCategorias, productByCategory, isFiltred } = this.state;
     return (
-      <div>
+      <div className="container-category">
         <ul>
           {listaCategorias.map((e, i) => (
             <button
+              data-testid="category"
+              className="button-category"
               type="button"
               key={ i }
               name={ e.name }
-              data-testid="category"
               onClick={ this.handleSearchCategory }
             >
               {e.name}
             </button>))}
         </ul>
+        {/* --------> Verificar a props <-------- */}
         <Home
           productByCategory={ productByCategory }
           isFiltred={ isFiltred }

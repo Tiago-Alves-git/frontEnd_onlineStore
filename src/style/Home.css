@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container-home {
+  display: flex;
+}
+
+.container-search {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 5px 10px 20px;
+}
+
+.container-products {
+  margin: 10px;
+  width: 80%;
+}
+
+.input-search {
+  border-radius: 10px;
+  height: 30px;
+  padding: 5px 10px;
+  width: 80%;
+}
+
+.button-search {
+  border-radius: 10px;
+  height: 30px;
+  margin-left: 10px;
+  width: 130px;
+}
+
+.icon-cart {
+  height: 30px;
+  width: 50px;
+}
+
+.text-default {
+  align-items: center;
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+}
+
+.container-category {
+  margin: 10px;
+}
