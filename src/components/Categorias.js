@@ -1,5 +1,7 @@
 import React from 'react';
+import { func } from 'prop-types';
 import { getCategories } from '../services/api';
+import '../style/Categorias.css';
 
 class Categorias extends React.Component {
   constructor() {
@@ -19,14 +21,17 @@ class Categorias extends React.Component {
 
   render() {
     const { listaCategorias } = this.state;
+    const { handleSearchCategory } = this.props;
     return (
-      <div>
+      <div className="container-category">
         <ul>
           {listaCategorias.map((e, i) => (
             <button
-              type="button"
-              key={ i }
               data-testid="category"
+              type="button"
+              className="button-category"
+              key={ i }
+              onClick={ () => handleSearchCategory(e.id) }
             >
               {e.name}
             </button>))}
@@ -35,5 +40,9 @@ class Categorias extends React.Component {
     );
   }
 }
+
+Categorias.propTypes = {
+  handleSearchCategory: func.isRequired,
+};
 
 export default Categorias;

@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import '../style/Produtos.css';
 
 class Produtos extends React.Component {
   render() {
     const { listaDeProdutos } = this.props;
-    console.log(listaDeProdutos);
     return (
-      <div>
+      <div className="container-products">
         {listaDeProdutos.length > 1
           ? listaDeProdutos.map((produto, index) => (
             <div
               data-testid="product"
+              className="product"
               key={ index }
             >
               <img src={ produto.thumbnail } alt={ produto.title } />
