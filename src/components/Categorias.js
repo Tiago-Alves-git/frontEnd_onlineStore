@@ -2,7 +2,6 @@ import React from 'react';
 import { func } from 'prop-types';
 import { getCategories } from '../services/api';
 import '../style/Categorias.css';
-// import SearchCategory from './SearchCategory';
 
 class Categorias extends React.Component {
   constructor() {
@@ -10,7 +9,6 @@ class Categorias extends React.Component {
 
     this.state = {
       listaCategorias: [],
-      // productByCategory: [],
     };
   }
 
@@ -20,13 +18,6 @@ class Categorias extends React.Component {
       listaCategorias: resposta,
     });
   }
-
-  // handleSearchCategory = async ({ target }) => {
-  //   const { name } = target;
-  //   const request = await getProductById(name);
-  //   const resultSearch = request.results;
-  //   this.setState({ productByCategory: resultSearch });
-  // };
 
   render() {
     const { listaCategorias } = this.state;
@@ -40,8 +31,7 @@ class Categorias extends React.Component {
               type="button"
               className="button-category"
               key={ i }
-              name={ e.name }
-              onClick={ handleSearchCategory }
+              onClick={ () => handleSearchCategory(e.id) }
             >
               {e.name}
             </button>))}

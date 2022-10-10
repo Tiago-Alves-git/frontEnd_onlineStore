@@ -5,7 +5,6 @@ import '../style/Produtos.css';
 class Produtos extends React.Component {
   render() {
     const { listaDeProdutos } = this.props;
-    // console.log(listaDeProdutos);
     return (
       <div className="container-products">
         {listaDeProdutos.length > 1

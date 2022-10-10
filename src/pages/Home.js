@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
 import Produtos from '../components/Produtos';
 import Categorias from '../components/Categorias';
-import { getProductsFromCategoryAndQuery, getProductById } from '../services/api';
-import SearchCategory from '../components/SearchCategory';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 import '../style/Home.css';
 
 class Home extends React.Component {
@@ -15,14 +14,12 @@ class Home extends React.Component {
       pesquisa: '',
       categoria: null,
       listaDeProdutos: null,
-      productByCategory: [],
-      isFiltred: false,
     };
   }
 
   handleSearch = ({ target }) => {
     const { value } = target;
-    this.setState({ pesquisa: value, isFiltred: false });
+    this.setState({ pesquisa: value });
   };
 
   handleSearchSubmit = async () => {
@@ -32,23 +29,16 @@ class Home extends React.Component {
     this.setState({ listaDeProdutos: result.results });
   };
 
-  handleSearchCategory = async ({ target }) => {
-    const { name } = target;
-    console.log('Função executada');
-    const request = await getProductById(name);
-    const resultSearch = request.results;
-    this.setState({ productByCategory: resultSearch, isFiltred: true });
+  handleSearchCategory = async (idCategory) => {
+    this.setState({ categoria: idCategory }, this.handleSearchSubmit);
   };
 
   render() {
-    const { pesquisa, listaDeProdutos, productByCategory, isFiltred } = this.state;
+    const { pesquisa, listaDeProdutos } = this.state;
     return (
       <div className="container-home">
-        {/* Props para ser preenchida no componente categorias. Elevando state */}
         <Categorias
-          productByCategory={ productByCategory }
           handleSearchCategory={ this.handleSearchCategory }
-          isFiltred={ isFiltred }
         />
 
         <div className="container-products">
@@ -76,14 +66,16 @@ class Home extends React.Component {
               <BiCart className="icon-cart" />
             </Link>
           </div>
-          { isFiltred && (<SearchCategory productByCategory={ productByCategory } />) }
-          { listaDeProdutos && (<Produtos listaDeProdutos={ listaDeProdutos } />) }
-          <h2
-            data-testid="home-initial-message"
-            className="text-default"
-          >
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </h2>
+          { listaDeProdutos
+            ? (<Produtos listaDeProdutos={ listaDeProdutos } />)
+            : (
+              <h2
+                data-testid="home-initial-message"
+                className="text-default"
+              >
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </h2>
+            )}
         </div>
       </div>
     );
