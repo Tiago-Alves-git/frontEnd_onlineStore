@@ -4,12 +4,37 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 
 class App extends React.Component {
+  state = {
+    addToCart: [],
+  };
+
+  handleButton = (param) => {
+    console.log(param);
+    this.setState((prevState) => ({
+      addToCart: [...prevState.addToCart, param],
+    }));
+  };
+
   render() {
+    const { addToCart } = this.state;
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ Home } />
-          <Route path="/cart" component={ Cart } />
+          <Route
+            exact
+            path="/"
+            render={ (props) => (<Home
+              { ...props }
+              handleButton={ this.handleButton }
+            />) }
+          />
+          <Route
+            path="/cart"
+            render={ (props) => (<Cart
+              { ...props }
+              addToCart={ addToCart }
+            />) }
+          />
         </Switch>
       </BrowserRouter>
     );

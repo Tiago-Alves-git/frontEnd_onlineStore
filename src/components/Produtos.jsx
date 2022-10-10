@@ -4,7 +4,7 @@ import '../style/Produtos.css';
 
 class Produtos extends React.Component {
   render() {
-    const { listaDeProdutos } = this.props;
+    const { listaDeProdutos, handleButton } = this.props;
     return (
       <div className="container-products">
         {listaDeProdutos.length > 1
@@ -17,6 +17,13 @@ class Produtos extends React.Component {
               <img src={ produto.thumbnail } alt={ produto.title } />
               <p>{produto.title}</p>
               <p>{`R$ ${produto.price}`}</p>
+              <button
+                type="button"
+                onClick={ () => { handleButton(produto); } }
+                data-testid="product-add-to-cart"
+              >
+                Adicione ao carrinho
+              </button>
             </div>
           ))
           : <p>Nenhum produto foi encontrado</p>}
