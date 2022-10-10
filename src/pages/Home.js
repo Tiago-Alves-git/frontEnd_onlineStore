@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
@@ -34,7 +35,8 @@ class Home extends React.Component {
   };
 
   render() {
-    const { pesquisa, listaDeProdutos } = this.state;
+    const { pesquisa, listaDeProdutos, addToCart } = this.state;
+    const { handleButton } = this.props;
     return (
       <div className="container-home">
         <Categorias
@@ -61,13 +63,18 @@ class Home extends React.Component {
 
             <Link
               data-testid="shopping-cart-button"
-              to="/cart"
+              to={ `/cart/${addToCart}` }
             >
               <BiCart className="icon-cart" />
             </Link>
           </div>
           { listaDeProdutos
-            ? (<Produtos listaDeProdutos={ listaDeProdutos } />)
+            ? (
+              <Produtos
+                listaDeProdutos={ listaDeProdutos }
+                handleButton={ handleButton }
+              />
+            )
             : (
               <h2
                 data-testid="home-initial-message"
@@ -81,5 +88,9 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  handleButton: PropTypes.any,
+}.isRequired;
 
 export default Home;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 class Produtos extends React.Component {
   render() {
-    const { listaDeProdutos } = this.props;
+    const { listaDeProdutos, handleButton } = this.props;
     return (
       <div className="container-products">
         {listaDeProdutos.length > 1
@@ -15,16 +15,32 @@ class Produtos extends React.Component {
               key={ produto.id }
               data-testid="product-detail-link"
             >
+
+              <img src={ produto.thumbnail } alt={ produto.title } />
+              <p>{produto.title}</p>
+              <p>{`R$ ${produto.price}`}</p>
+              
+            </div>
+            
               <div
                 data-testid="product"
                 className="product"
                 key={ index }
               >
-                <img src={ produto.thumbnail } alt={ produto.title } />
-                <p>{produto.title}</p>
-                <p>{`R$ ${produto.price}`}</p>
+              //  <img src={ produto.thumbnail } alt={ produto.title } />
+              //  <p>{produto.title}</p>
+              //  <p>{`R$ ${produto.price}`}</p>
               </div>
             </Link>
+            
+            <button
+                type="button"
+                onClick={ () => { handleButton(produto); } }
+                data-testid="product-add-to-cart"
+              >
+                Adicione ao carrinho
+              </button>
+
           ))
           : <p>Nenhum produto foi encontrado</p>}
       </div>
