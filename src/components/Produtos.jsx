@@ -10,30 +10,24 @@ class Produtos extends React.Component {
       <div className="container-products">
         {listaDeProdutos.length > 1
           ? listaDeProdutos.map((produto, index) => (
-            <Link
-              to={ `/produto/${produto.id}` }
-              key={ produto.id }
-              data-testid="product-detail-link"
-            >
-
-              <img src={ produto.thumbnail } alt={ produto.title } />
-              <p>{produto.title}</p>
-              <p>{`R$ ${produto.price}`}</p>
-              
-            </div>
-            
-              <div
-                data-testid="product"
-                className="product"
-                key={ index }
+            <div key={ produto.id }>
+              <Link
+                to={ `/produto/${produto.id}` }
+                data-testid="product-detail-link"
               >
-              //  <img src={ produto.thumbnail } alt={ produto.title } />
-              //  <p>{produto.title}</p>
-              //  <p>{`R$ ${produto.price}`}</p>
-              </div>
-            </Link>
-            
-            <button
+                <div
+                  data-testid="product"
+                  className="product"
+                  key={ index }
+                >
+                  <img src={ produto.thumbnail } alt={ produto.title } />
+                  <p>{produto.title}</p>
+                  <p>{`R$ ${produto.price}`}</p>
+
+                </div>
+              </Link>
+
+              <button
                 type="button"
                 onClick={ () => { handleButton(produto); } }
                 data-testid="product-add-to-cart"
@@ -41,6 +35,7 @@ class Produtos extends React.Component {
                 Adicione ao carrinho
               </button>
 
+            </div>
           ))
           : <p>Nenhum produto foi encontrado</p>}
       </div>

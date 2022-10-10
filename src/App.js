@@ -35,6 +35,7 @@ class App extends React.Component {
               { ...props }
               addToCart={ addToCart }
             />) }
+          />
           <Route
             exact
             path="/produto/:id"
