@@ -35,7 +35,7 @@ class Home extends React.Component {
   };
 
   render() {
-    const { pesquisa, listaDeProdutos, addToCart } = this.state;
+    const { pesquisa, listaDeProdutos } = this.state;
     const { handleButton } = this.props;
     return (
       <div className="container-home">
@@ -63,7 +63,7 @@ class Home extends React.Component {
 
             <Link
               data-testid="shopping-cart-button"
-              to={ `/cart/${addToCart}` }
+              to="/cart"
             >
               <BiCart className="icon-cart" />
             </Link>
