@@ -4,7 +4,6 @@ import React from 'react';
 class Cart extends React.Component {
   render() {
     const { addToCart } = this.props;
-    console.log(addToCart);
     return (
       <div>
         { addToCart.length < 1 ? (
