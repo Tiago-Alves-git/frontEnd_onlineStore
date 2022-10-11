@@ -35,7 +35,10 @@ class App extends React.Component {
   removeItemCart = ({ target }) => {
     const { name } = target;
     const { addToCart } = this.state;
-    const newListAddToCart = addToCart.find((product) => (name !== product.id));
+    const productRemoved = addToCart.find((product) => (name === product.id));
+    const indexRemoved = addToCart.indexOf(productRemoved);
+    const newListAddToCart = addToCart
+      .filter((_product, index) => (index !== indexRemoved));
     salvarCarrinhoNoLocalStorage(newListAddToCart);
     this.setState({ addToCart: newListAddToCart });
   };
