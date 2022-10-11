@@ -10,7 +10,6 @@ import { adicionaNovoProduto,
 class App extends React.Component {
   state = {
     addToCart: [],
-    countItem: 1,
   };
 
   getCart = () => {
@@ -43,8 +42,15 @@ class App extends React.Component {
     this.setState({ addToCart: newListAddToCart });
   };
 
+  // updateAmount = () => {
+  //   const { addToCart } = this.state;
+  //   const newListCart = [...new Set(addToCart)];
+  //   // this.setState({ listItemsCart: newListCart });
+  //   console.log(newListCart);
+  // };
+
   render() {
-    const { addToCart, countItem } = this.state;
+    const { addToCart } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -64,9 +70,7 @@ class App extends React.Component {
               handleButton={ this.handleButton }
               removeAllItemCart={ this.removeAllItemCart }
               removeItemCart={ this.removeItemCart }
-              addItemCart={ this.addItemCart }
               getCart={ this.getCart }
-              countItem={ countItem }
             />) }
           />
           <Route

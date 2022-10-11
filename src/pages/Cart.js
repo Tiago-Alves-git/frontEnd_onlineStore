@@ -2,21 +2,35 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiUndo } from 'react-icons/bi';
+// import { recuperarCarrinhoDoLocalStorage } from '../services/locaStorage';
 
 class Cart extends React.Component {
+  // constructor() {
+  //   super();
+  //   this.state = { newAddToCart: [] };
+  // }
+
   componentDidMount() {
     const { getCart } = this.props;
     getCart();
   }
 
+  // componentDidMount() {
+  //   const cartLocalStorage = recuperarCarrinhoDoLocalStorage();
+  //   this.setState({ newAddToCart: cartLocalStorage });
+  // }
+
   render() {
+    // const { newAddToCart } = this.state;
     const {
       addToCart,
       removeAllItemCart,
       removeItemCart,
-      countItem,
       handleButton,
     } = this.props;
+
+    // const test = [...new Set(addToCart)];
+    // console.log(test);
 
     return (
       <div>
@@ -28,7 +42,7 @@ class Cart extends React.Component {
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>
-        ) : (addToCart.map((items, index) => (
+        ) : ([...new Set(addToCart)].map((items, index) => (
           <div key={ index }>
             <button
               data-testid="remove-product"
@@ -53,7 +67,7 @@ class Cart extends React.Component {
             >
               -
             </button>
-            <p>{ countItem }</p>
+            <p>{ addToCart.filter((prod) => (prod === items)).length }</p>
             <button
               data-testid="product-increase-quantity"
               type="button"
