@@ -4,7 +4,8 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import ProductDetails from './pages/ProductDetails';
 import { adicionaNovoProduto,
-  salvarCarrinhoNoLocalStorage } from './services/locaStorage';
+  salvarCarrinhoNoLocalStorage,
+  recuperarCarrinhoDoLocalStorage } from './services/locaStorage';
 
 class App extends React.Component {
   state = {
@@ -12,14 +13,18 @@ class App extends React.Component {
     countItem: 1,
   };
 
+  getCart = () => {
+    const cartLocalStorage = recuperarCarrinhoDoLocalStorage();
+    this.setState({ addToCart: cartLocalStorage });
+  };
+
   handleButton = (param) => {
-    // const { addToCart } = this.state;
     this.setState((prevState) => ({
       addToCart: [...prevState.addToCart, param],
     }), () => adicionaNovoProduto(param));
   };
 
-  removeItemCart = ({ target }) => {
+  removeAllItemCart = ({ target }) => {
     const { name } = target;
     const { addToCart } = this.state;
     const newListAddToCart = addToCart.filter((product) => (name !== product.id));
@@ -27,22 +32,12 @@ class App extends React.Component {
     this.setState({ addToCart: newListAddToCart });
   };
 
-  addItemCart = ({ target }) => {
+  removeItemCart = ({ target }) => {
     const { name } = target;
-    // console.log('Name(ID): ', name);
-    const { addToCart, countItem } = this.state;
-    // console.log(addToCart);
-
-    let count = countItem;
-    // console.log('Inicial: ', count);
-    const productInCart = addToCart.some(({ id }) => (name === id));
-    // console.log('Produto repetido? ', productInCart);
-
-    if (productInCart) {
-      count += 1;
-      this.setState({ countItem: count });
-    }
-    // console.log('Incrementando: ', count);
+    const { addToCart } = this.state;
+    const newListAddToCart = addToCart.find((product) => (name !== product.id));
+    salvarCarrinhoNoLocalStorage(newListAddToCart);
+    this.setState({ addToCart: newListAddToCart });
   };
 
   render() {
@@ -64,8 +59,10 @@ class App extends React.Component {
               { ...props }
               addToCart={ addToCart }
               handleButton={ this.handleButton }
+              removeAllItemCart={ this.removeAllItemCart }
               removeItemCart={ this.removeItemCart }
               addItemCart={ this.addItemCart }
+              getCart={ this.getCart }
               countItem={ countItem }
             />) }
           />

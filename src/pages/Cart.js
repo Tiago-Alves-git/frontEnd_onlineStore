@@ -4,8 +4,20 @@ import { Link } from 'react-router-dom';
 import { BiUndo } from 'react-icons/bi';
 
 class Cart extends React.Component {
+  componentDidMount() {
+    const { getCart } = this.props;
+    getCart();
+  }
+
   render() {
-    const { addToCart, removeItemCart, addItemCart, countItem } = this.props;
+    const {
+      addToCart,
+      removeAllItemCart,
+      removeItemCart,
+      countItem,
+      handleButton,
+    } = this.props;
+
     return (
       <div>
         <div>
@@ -16,13 +28,13 @@ class Cart extends React.Component {
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>
-        ) : (addToCart.map((items) => (
-          <div key={ items.id }>
+        ) : (addToCart.map((items, index) => (
+          <div key={ index }>
             <button
               data-testid="remove-product"
               type="button"
               name={ items.id }
-              onClick={ removeItemCart }
+              onClick={ removeAllItemCart }
             >
               X
             </button>
@@ -37,6 +49,7 @@ class Cart extends React.Component {
               data-testid="product-decrease-quantity"
               type="button"
               name={ items.id }
+              onClick={ removeItemCart }
             >
               -
             </button>
@@ -45,7 +58,7 @@ class Cart extends React.Component {
               data-testid="product-increase-quantity"
               type="button"
               name={ items.id }
-              onClick={ addItemCart }
+              onClick={ () => handleButton(items) }
             >
               +
             </button>
