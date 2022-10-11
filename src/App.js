@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import ProductDetails from './pages/ProductDetails';
+import { adicionaNovoProduto } from './services/locaStorage';
 
 class App extends React.Component {
   state = {
@@ -10,10 +11,10 @@ class App extends React.Component {
   };
 
   handleButton = (param) => {
-    console.log(param);
+    // const { addToCart } = this.state;
     this.setState((prevState) => ({
       addToCart: [...prevState.addToCart, param],
-    }));
+    }), () => adicionaNovoProduto(param));
   };
 
   render() {
@@ -34,12 +35,17 @@ class App extends React.Component {
             render={ (props) => (<Cart
               { ...props }
               addToCart={ addToCart }
+              handleButton={ this.handleButton }
             />) }
           />
           <Route
             exact
             path="/produto/:id"
-            render={ (props) => <ProductDetails { ...props } /> }
+            render={ (props) => (<ProductDetails
+              { ...props }
+              addToCart={ addToCart }
+              handleButton={ this.handleButton }
+            />) }
           />
         </Switch>
       </BrowserRouter>

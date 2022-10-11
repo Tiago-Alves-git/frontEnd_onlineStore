@@ -20,8 +20,17 @@ class ProductDetails extends React.Component {
 
   render() {
     const { produtos } = this.state;
+    const { handleButton } = this.props;
     return (
       <>
+        <Link to="/cart">
+          <button
+            data-testid="shopping-cart-button"
+            type="button"
+          >
+            Carrinho de Compras
+          </button>
+        </Link>
         <div key={ produtos.id }>
           <h1 data-testid="product-detail-name">{produtos.title}</h1>
           <img
@@ -31,25 +40,25 @@ class ProductDetails extends React.Component {
           />
           <p data-testid="product-detail-price">{produtos.price}</p>
         </div>
-        <Link to="/cart">
-          <button
-            data-testid="shopping-cart-button"
-            type="button"
-          >
-            Carrinho de Compras
-          </button>
-        </Link>
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          onClick={ () => handleButton(produtos) }
+        >
+          Adicionar ao carrinho
+        </button>
       </>
     );
   }
 }
 
 ProductDetails.propTypes = {
+  handleButton: PropTypes.func,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
-  }).isRequired,
-};
+  }),
+}.isRequired;
 
 export default ProductDetails;

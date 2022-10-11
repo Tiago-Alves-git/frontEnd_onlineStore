@@ -1,16 +1,28 @@
-const salvarCarrinhoNoLocalStorage = (produtos) => {
-  localStorage.setItem('carrinhoDeCompras', JSON.stringify(produtos));
-};
+if (!JSON.parse(localStorage.getItem('carrinhoDeCompras'))) {
+  localStorage.setItem('carrinhoDeCompras', JSON.stringify([]));
+}
 
 const recuperarCarrinhoDoLocalStorage = () => {
   const listaDeProdutos = JSON.parse(localStorage.getItem('carrinhoDeCompras'));
   return listaDeProdutos;
 };
 
-const limparCarrinhoDoLocalStorage = () => {
-  localStorage.removeItem('carrinhoDeCompras');
+const salvarCarrinhoNoLocalStorage = (listaDeProdutos) => localStorage
+  .setItem('carrinhoDeCompras', JSON.stringify(listaDeProdutos));
+
+const adicionaNovoProduto = (produto) => {
+  if (produto) {
+    const carrinhoAnterior = recuperarCarrinhoDoLocalStorage();
+    salvarCarrinhoNoLocalStorage([...carrinhoAnterior, produto]);
+  }
 };
 
-export { salvarCarrinhoNoLocalStorage,
+const limparCarrinhoDoLocalStorage = () => localStorage
+  .removeItem('carrinhoDeCompras');
+
+export {
   recuperarCarrinhoDoLocalStorage,
-  limparCarrinhoDoLocalStorage };
+  salvarCarrinhoNoLocalStorage,
+  adicionaNovoProduto,
+  limparCarrinhoDoLocalStorage,
+};
