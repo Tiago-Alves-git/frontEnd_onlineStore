@@ -18,36 +18,53 @@ class App extends React.Component {
   };
 
   handleButton = (param) => {
+    param.quantidade = 1;
     this.setState((prevState) => ({
       addToCart: [...prevState.addToCart, param],
     }), () => adicionaNovoProduto(param));
+  };
+
+  // * verificar setState() jeito 1
+  addQuantidade = (produto) => {
+    const { addToCart } = this.state;
+    produto.quantidade += 1;
+    this.setState(() => ({
+      addToCart,
+    }), salvarCarrinhoNoLocalStorage(addToCart));
+  };
+
+  // addQuantidade = (produto) => {
+  //   const num = -1;
+  //   const getLocalStorage = recuperarCarrinhoDoLocalStorage();
+  //   const prodSalvos = getLocalStorage.filter((p) => p.id !== produto.id);
+  //   const prod = getLocalStorage.find((p) => p.id === produto.id);
+  //   prod.quantidade += 1;
+  //   const newAddToCart = [prod, ...prodSalvos];
+  //   newAddToCart.sort((a, b) => (a.title.toUpperCase() > b.title.toUpperCase()
+  //     ? 1
+  //     : num));
+  //   console.log(newAddToCart);
+  //   this.setState({ addToCart: newAddToCart });
+  //   salvarCarrinhoNoLocalStorage(newAddToCart);
+  // };
+
+  // * verificar setState() jeito 2
+  removeQuantidade = (produto) => {
+    const { addToCart } = this.state;
+    produto.quantidade -= 1;
+    const novoaddToCart = [...addToCart];
+    this.setState(() => ({
+      addToCart: novoaddToCart,
+    }), salvarCarrinhoNoLocalStorage(addToCart));
   };
 
   removeAllItemCart = ({ target }) => {
     const { name } = target;
     const { addToCart } = this.state;
     const newListAddToCart = addToCart.filter((product) => (name !== product.id));
-    salvarCarrinhoNoLocalStorage(newListAddToCart);
     this.setState({ addToCart: newListAddToCart });
-  };
-
-  removeItemCart = ({ target }) => {
-    const { name } = target;
-    const { addToCart } = this.state;
-    const productRemoved = addToCart.find((product) => (name === product.id));
-    const indexRemoved = addToCart.indexOf(productRemoved);
-    const newListAddToCart = addToCart
-      .filter((_product, index) => (index !== indexRemoved));
     salvarCarrinhoNoLocalStorage(newListAddToCart);
-    this.setState({ addToCart: newListAddToCart });
   };
-
-  // updateAmount = () => {
-  //   const { addToCart } = this.state;
-  //   const newListCart = [...new Set(addToCart)];
-  //   // this.setState({ listItemsCart: newListCart });
-  //   console.log(newListCart);
-  // };
 
   render() {
     const { addToCart } = this.state;
@@ -69,8 +86,10 @@ class App extends React.Component {
               addToCart={ addToCart }
               handleButton={ this.handleButton }
               removeAllItemCart={ this.removeAllItemCart }
-              removeItemCart={ this.removeItemCart }
               getCart={ this.getCart }
+              validateItemsCart={ this.validateItemsCart }
+              addQuantidade={ this.addQuantidade }
+              removeQuantidade={ this.removeQuantidade }
             />) }
           />
           <Route

@@ -5,32 +5,18 @@ import { BiUndo } from 'react-icons/bi';
 // import { recuperarCarrinhoDoLocalStorage } from '../services/locaStorage';
 
 class Cart extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = { newAddToCart: [] };
-  // }
-
   componentDidMount() {
     const { getCart } = this.props;
     getCart();
   }
 
-  // componentDidMount() {
-  //   const cartLocalStorage = recuperarCarrinhoDoLocalStorage();
-  //   this.setState({ newAddToCart: cartLocalStorage });
-  // }
-
   render() {
-    // const { newAddToCart } = this.state;
     const {
       addToCart,
       removeAllItemCart,
-      removeItemCart,
-      handleButton,
+      removeQuantidade,
+      addQuantidade,
     } = this.props;
-
-    // const test = [...new Set(addToCart)];
-    // console.log(test);
 
     return (
       <div>
@@ -42,7 +28,7 @@ class Cart extends React.Component {
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>
-        ) : ([...new Set(addToCart)].map((items, index) => (
+        ) : ((addToCart).map((items, index) => (
           <div key={ index }>
             <button
               data-testid="remove-product"
@@ -63,22 +49,23 @@ class Cart extends React.Component {
               data-testid="product-decrease-quantity"
               type="button"
               name={ items.id }
-              onClick={ removeItemCart }
+              onClick={ () => removeQuantidade(items) }
+              disabled={ items.quantidade === 1 }
             >
               -
             </button>
-            <p>{ addToCart.filter((prod) => (prod === items)).length }</p>
+            <p data-testid="shopping-cart-product-quantity">{ items.quantidade }</p>
             <button
               data-testid="product-increase-quantity"
               type="button"
               name={ items.id }
-              onClick={ () => handleButton(items) }
+              onClick={ () => addQuantidade(items) }
             >
               +
             </button>
           </div>))
         )}
-        <p data-testid="shopping-cart-product-quantity">
+        <p>
           Quantidade de items em seu carrinho :
           {' '}
           {addToCart.length}
