@@ -33,21 +33,6 @@ class App extends React.Component {
     }), salvarCarrinhoNoLocalStorage(addToCart));
   };
 
-  // addQuantidade = (produto) => {
-  //   const num = -1;
-  //   const getLocalStorage = recuperarCarrinhoDoLocalStorage();
-  //   const prodSalvos = getLocalStorage.filter((p) => p.id !== produto.id);
-  //   const prod = getLocalStorage.find((p) => p.id === produto.id);
-  //   prod.quantidade += 1;
-  //   const newAddToCart = [prod, ...prodSalvos];
-  //   newAddToCart.sort((a, b) => (a.title.toUpperCase() > b.title.toUpperCase()
-  //     ? 1
-  //     : num));
-  //   console.log(newAddToCart);
-  //   this.setState({ addToCart: newAddToCart });
-  //   salvarCarrinhoNoLocalStorage(newAddToCart);
-  // };
-
   // * verificar setState() jeito 2
   removeQuantidade = (produto) => {
     const { addToCart } = this.state;
@@ -65,6 +50,21 @@ class App extends React.Component {
     this.setState({ addToCart: newListAddToCart });
     salvarCarrinhoNoLocalStorage(newListAddToCart);
   };
+
+  // addQuantidade = (produto) => {
+  //   const num = -1;
+  //   const getLocalStorage = recuperarCarrinhoDoLocalStorage();
+  //   const prodSalvos = getLocalStorage.filter((p) => p.id !== produto.id);
+  //   const prod = getLocalStorage.find((p) => p.id === produto.id);
+  //   prod.quantidade += 1;
+  //   const newAddToCart = [prod, ...prodSalvos];
+  //   newAddToCart.sort((a, b) => (a.title.toUpperCase() > b.title.toUpperCase()
+  //     ? 1
+  //     : num));
+  //   console.log(newAddToCart);
+  //   this.setState({ addToCart: newAddToCart });
+  //   salvarCarrinhoNoLocalStorage(newAddToCart);
+  // };
 
   render() {
     const { addToCart } = this.state;

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiUndo } from 'react-icons/bi';
-// import { recuperarCarrinhoDoLocalStorage } from '../services/locaStorage';
 
 class Cart extends React.Component {
   componentDidMount() {
