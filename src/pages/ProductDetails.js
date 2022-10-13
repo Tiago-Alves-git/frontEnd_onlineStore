@@ -15,20 +15,14 @@ class ProductDetails extends React.Component {
   }
 
   async componentDidMount() {
-    const { match: { params: { id } }, getCart } = this.props;
-    getCart();
+    const { match: { params: { id } } } = this.props;
     const response = await getProductById(id);
     this.setState({ produtos: response, loading: true });
   }
 
   render() {
     const { produtos, loading } = this.state;
-    const { handleButton, addToCart } = this.props;
-
-    const totalProd = addToCart.reduce((count, prod) => {
-      count += prod.quantidade;
-      return count;
-    }, 0);
+    const { handleButton } = this.props;
 
     return (
       <>
@@ -39,9 +33,6 @@ class ProductDetails extends React.Component {
           >
             Carrinho de Compras
           </button>
-          <p data-testid="shopping-cart-size">
-            { totalProd }
-          </p>
         </Link>
         <div key={ produtos.id }>
           <h1 data-testid="product-detail-name">{produtos.title}</h1>
