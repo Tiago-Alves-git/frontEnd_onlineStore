@@ -18,11 +18,6 @@ class Home extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const { getCart } = this.props;
-    // getCart();
-  }
-
   handleSearch = ({ target }) => {
     const { value } = target;
     this.setState({ pesquisa: value });
