@@ -77,6 +77,14 @@ class Cart extends React.Component {
             {' '}
             {addToCart.length}
           </p>
+          <Link to="/checkout">
+            <button
+              data-testid="checkout-products"
+              type="button"
+            >
+              Finalizar Compra
+            </button>
+          </Link>
         </fieldset>
       </div>
     );

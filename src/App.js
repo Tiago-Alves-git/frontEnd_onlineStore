@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 import ProductDetails from './pages/ProductDetails';
 import { adicionaNovoProduto,
   salvarCarrinhoNoLocalStorage,
@@ -100,6 +101,10 @@ class App extends React.Component {
               addToCart={ addToCart }
               handleButton={ this.handleButton }
             />) }
+          />
+          <Route
+            path="/checkout"
+            render={ (props) => (<Checkout { ...props } addToCart={ addToCart } />) }
           />
         </Switch>
       </BrowserRouter>
