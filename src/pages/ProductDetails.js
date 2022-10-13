@@ -42,14 +42,7 @@ class ProductDetails extends React.Component {
           />
           <p data-testid="product-detail-price">{produtos.price}</p>
         </div>
-        <Link to="/cart">
-          <button
-            data-testid="shopping-cart-button"
-            type="button"
-          >
-            Carrinho de Compras
-          </button>
-        </Link>
+
         {loading && <Formulario idProduto={ produtos.id } /> }
 
         <button
