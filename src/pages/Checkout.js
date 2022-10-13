@@ -12,7 +12,8 @@ class Checkout extends React.Component {
       CEP: '',
       address: '',
       payment: '',
-      validadeForm: false,
+      validateForm: false,
+      messageError: false,
     };
   }
 
@@ -24,14 +25,18 @@ class Checkout extends React.Component {
   validadeInputs = () => {
     const { name, email, CPF, phone, CEP, address, payment } = this.state;
     const result = name && email && CPF && phone && CEP && address && payment;
-    this.setState({ validadeForm: !!result });
+    this.setState({ validateForm: !!result });
     // * !! serve para retornar boleano
     return !!result;
   };
 
   buttonSumit = () => {
-    const { validadeForm } = this.state;
-    console.log(validadeForm);
+    const { validateForm } = this.state;
+    if (!validateForm) {
+      this.setState({ messageError: true });
+    } else {
+      this.setState({ messageError: false });
+    }
   };
 
   render() {
@@ -43,6 +48,7 @@ class Checkout extends React.Component {
       phone,
       CEP,
       address,
+      messageError,
     } = this.state;
     return (
       <div>
@@ -172,7 +178,7 @@ class Checkout extends React.Component {
             >
               Comprar
             </button>
-            { !this.buttonSumit && <p data-testid="error-msg">Campos inválidos</p> }
+            { messageError && <p data-testid="error-msg">Campos inválidos</p> }
           </form>
         </div>
       </div>
