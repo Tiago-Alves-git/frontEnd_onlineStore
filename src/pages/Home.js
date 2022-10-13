@@ -18,6 +18,11 @@ class Home extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { getCart } = this.props;
+    getCart();
+  }
+
   handleSearch = ({ target }) => {
     const { value } = target;
     this.setState({ pesquisa: value });
@@ -36,7 +41,13 @@ class Home extends React.Component {
 
   render() {
     const { pesquisa, listaDeProdutos } = this.state;
-    const { handleButton } = this.props;
+    const { handleButton, addToCart } = this.props;
+
+    const totalProd = addToCart.reduce((count, prod) => {
+      count += prod.quantidade;
+      return count;
+    }, 0);
+
     return (
       <div className="container-home">
         <Categorias
@@ -67,6 +78,9 @@ class Home extends React.Component {
             >
               <BiCart className="icon-cart" />
             </Link>
+            <p data-testid="shopping-cart-size">
+              { totalProd }
+            </p>
           </div>
           { listaDeProdutos
             ? (

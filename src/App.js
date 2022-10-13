@@ -78,6 +78,8 @@ class App extends React.Component {
             render={ (props) => (<Home
               { ...props }
               handleButton={ this.handleButton }
+              addToCart={ addToCart }
+              getCart={ this.getCart }
             />) }
           />
           <Route
@@ -100,6 +102,7 @@ class App extends React.Component {
               { ...props }
               addToCart={ addToCart }
               handleButton={ this.handleButton }
+              getCart={ this.getCart }
             />) }
           />
           <Route
