@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
+import Formulario from '../components/Formulario';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -9,17 +10,18 @@ class ProductDetails extends React.Component {
 
     this.state = {
       produtos: [],
+      loading: false,
     };
   }
 
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
     const response = await getProductById(id);
-    this.setState({ produtos: response });
+    this.setState({ produtos: response, loading: true });
   }
 
   render() {
-    const { produtos } = this.state;
+    const { produtos, loading } = this.state;
     return (
       <>
         <div key={ produtos.id }>
@@ -39,6 +41,8 @@ class ProductDetails extends React.Component {
             Carrinho de Compras
           </button>
         </Link>
+        {loading && <Formulario idProduto={ produtos.id } /> }
+
       </>
     );
   }
