@@ -79,7 +79,7 @@ class Formulario extends React.Component {
   render() {
     const { email, comentario, mensagemErro, localMontado } = this.state;
     const { idProduto } = this.props;
-    console.log(`teste${idProduto}`);
+    // console.log(`teste${idProduto}`);
 
     return (
       <>

@@ -20,7 +20,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     const { getCart } = this.props;
-    getCart();
+    // getCart();
   }
 
   handleSearch = ({ target }) => {
