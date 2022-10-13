@@ -31,11 +31,14 @@ class Checkout extends React.Component {
   };
 
   buttonSumit = () => {
+    const { history } = this.props;
     const { validateForm } = this.state;
     if (!validateForm) {
       this.setState({ messageError: true });
     } else {
       this.setState({ messageError: false });
+      localStorage.setItem('carrinhoDeCompras', JSON.stringify([]));
+      history.push('/');
     }
   };
 
