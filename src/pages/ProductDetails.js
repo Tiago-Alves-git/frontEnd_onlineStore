@@ -51,7 +51,7 @@ class ProductDetails extends React.Component {
           </button>
         </Link>
         {loading && <Formulario idProduto={ produtos.id } /> }
-        
+
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
