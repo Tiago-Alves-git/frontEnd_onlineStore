@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { BiCart } from 'react-icons/bi';
 import Produtos from '../components/Produtos';
 import Categorias from '../components/Categorias';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Header from '../components/Header';
 import '../style/Home.css';
 
 class Home extends React.Component {
@@ -35,14 +34,9 @@ class Home extends React.Component {
   };
 
   render() {
-    const { pesquisa, listaDeProdutos } = this.state;
-    const { handleButton, addToCart } = this.props;
-
-    const totalProd = addToCart.reduce((count, prod) => {
-      count += prod.quantidade;
-      return count;
-    }, 0);
-
+    const { listaDeProdutos, pesquisa } = this.state;
+    const { handleButton, addToCart, getCart } = this.props;
+    // console.log(addToCart);
     return (
       <div className="container-home">
         <Categorias
@@ -50,33 +44,13 @@ class Home extends React.Component {
         />
 
         <div className="container-products">
-          <div className="container-search">
-            <input
-              data-testid="query-input"
-              className="input-search"
-              type="text"
-              value={ pesquisa }
-              onChange={ this.handleSearch }
-            />
-            <button
-              data-testid="query-button"
-              className="button-search"
-              type="button"
-              onClick={ this.handleSearchSubmit }
-            >
-              Buscar produto
-            </button>
-
-            <Link
-              data-testid="shopping-cart-button"
-              to="/cart"
-            >
-              <BiCart className="icon-cart" />
-            </Link>
-            <p data-testid="shopping-cart-size">
-              { totalProd }
-            </p>
-          </div>
+          <Header
+            handleSearch={ this.handleSearch }
+            handleSearchSubmit={ this.handleSearchSubmit }
+            pesquisa={ pesquisa }
+            addToCart={ addToCart }
+            getCart={ getCart }
+          />
           { listaDeProdutos
             ? (
               <Produtos

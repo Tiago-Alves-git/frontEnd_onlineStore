@@ -18,6 +18,15 @@ class App extends React.Component {
     this.setState({ addToCart: cartLocalStorage });
   };
 
+  // amountItemsCart = () => {
+  //   const { addToCart } = this.state;
+  //   const totalProd = addToCart.reduce((count, prod) => {
+  //     count += prod.quantidade;
+  //     return count;
+  //   }, 0);
+  //   localStorage.setItem('amountItemsCart', totalProd);
+  // };
+
   handleButton = (param) => {
     param.quantidade = 1;
     this.setState((prevState) => ({
@@ -102,7 +111,6 @@ class App extends React.Component {
               { ...props }
               addToCart={ addToCart }
               handleButton={ this.handleButton }
-              getCart={ this.getCart }
             />) }
           />
           <Route
