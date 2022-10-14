@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { MdOutlineLocalShipping } from 'react-icons/md';
 import { getProductById } from '../services/api';
 import Formulario from '../components/Formulario';
 
@@ -53,6 +54,15 @@ class ProductDetails extends React.Component {
             alt={ produtos.title }
             data-testid="product-detail-image"
           />
+          {console.log(produtos)}
+          { loading && produtos?.shipping.free_shipping
+                  && (
+                    <p data-testid="free-shipping">
+                      <MdOutlineLocalShipping />
+                      {' '}
+                      Frete Gratis
+                    </p>
+                  )}
           <p data-testid="product-detail-price">{produtos.price}</p>
         </div>
 

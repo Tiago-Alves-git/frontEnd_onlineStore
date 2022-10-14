@@ -31,7 +31,9 @@ class Cart extends React.Component {
               Seu carrinho está vazio
             </p>
           ) : ((addToCart).map((items, index) => (
+
             <div key={ index } className="container-item">
+
               <button
                 data-testid="remove-product"
                 type="button"
@@ -65,6 +67,7 @@ class Cart extends React.Component {
                 name={ items.id }
                 onClick={ () => addQuantidade(items) }
                 className="btn-increase"
+                disabled={ items.available_quantity <= items.quantidade }
               >
                 <BsFillCartPlusFill className="icon-increase" />
               </button>

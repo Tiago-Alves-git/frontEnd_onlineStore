@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import '../style/Produtos.css';
 import { Link } from 'react-router-dom';
+import { MdOutlineLocalShipping } from 'react-icons/md';
 
 class Produtos extends React.Component {
   render() {
@@ -10,8 +11,12 @@ class Produtos extends React.Component {
       <div className="container-products">
         {listaDeProdutos.length > 1
           ? listaDeProdutos.map((produto, index) => (
-            <div key={ produto.id }>
+            <div
+              key={ produto.id }
+              style={ { color: '#333' } }
+            >
               <Link
+                style={ { textDecoration: 'none', color: '#333' } }
                 to={ `/produto/${produto.id}` }
                 data-testid="product-detail-link"
               >
@@ -22,6 +27,14 @@ class Produtos extends React.Component {
                 >
                   <img src={ produto.thumbnail } alt={ produto.title } />
                   <p>{produto.title}</p>
+                  { produto.shipping.free_shipping
+                  && (
+                    <p data-testid="free-shipping">
+                      <MdOutlineLocalShipping />
+                      {' '}
+                      Frete Gratis
+                    </p>
+                  )}
                   <p>{`R$ ${produto.price}`}</p>
 
                 </div>
