@@ -23,7 +23,7 @@ class Header extends React.Component {
     const { handleSearch, handleSearchSubmit, pesquisa } = this.props;
 
     return (
-      <div className="container-header">
+      <div>
         <p>Header</p>
         <div className="container-search">
           <input

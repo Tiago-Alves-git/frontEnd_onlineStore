@@ -36,6 +36,7 @@ class Home extends React.Component {
   render() {
     const { listaDeProdutos, pesquisa } = this.state;
     const { handleButton, addToCart, getCart } = this.props;
+    // console.log(addToCart);
     return (
       <div className="container-home">
         <Categorias

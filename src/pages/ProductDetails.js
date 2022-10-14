@@ -20,6 +20,15 @@ class ProductDetails extends React.Component {
     this.setState({ produtos: response, loading: true });
   }
 
+  countItemsCart = () => {
+    const { addToCart } = this.props;
+    const totalProd = addToCart?.reduce((count, prod) => {
+      count += prod.quantidade;
+      return count;
+    }, 0);
+    return totalProd;
+  };
+
   render() {
     const { produtos, loading } = this.state;
     const { handleButton } = this.props;
@@ -34,6 +43,9 @@ class ProductDetails extends React.Component {
             Carrinho de Compras
           </button>
         </Link>
+        <p data-testid="shopping-cart-size">
+          { this.countItemsCart() }
+        </p>
         <div key={ produtos.id }>
           <h1 data-testid="product-detail-name">{produtos.title}</h1>
           <img
