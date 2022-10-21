@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { BiUndo } from 'react-icons/bi';
 import { BsFillCartXFill, BsFillCartDashFill, BsFillCartPlusFill } from 'react-icons/bs';
 import '../style/Cart.css';
+import Header from '../components/Header';
 
 class Cart extends React.Component {
-  componentDidMount() {
-    const { getCart } = this.props;
-    getCart();
-  }
+  // componentDidMount() {
+  //   const { getCart } = this.props;
+  //   getCart();
+  // }
 
   render() {
     const {
@@ -17,10 +18,15 @@ class Cart extends React.Component {
       removeAllItemCart,
       removeQuantidade,
       addQuantidade,
+      getCart,
     } = this.props;
 
     return (
       <div className="container-cart">
+        <Header
+          addToCart={ addToCart }
+          getCart={ getCart }
+        />
         <div className="header-cart">
           <Link to="/"><BiUndo className="back-to-home" /></Link>
           <h2 className="cart-title">Carrinho de compras</h2>

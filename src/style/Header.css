@@ -3,3 +3,23 @@
   height: 60px;
   width: 100%;
 }
+
+.Header {
+  align-items: center;
+  background-color: grey;
+  color: whitesmoke;
+  display: flex;
+  height: 60px;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.IconCart {
+  align-items: center;
+  display: flex;
+}
+
+.linkHome {
+  color: whitesmoke;
+  text-decoration: none;
+}

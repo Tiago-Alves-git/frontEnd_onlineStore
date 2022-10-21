@@ -5,6 +5,7 @@ import Categorias from '../components/Categorias';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Header from '../components/Header';
 import '../style/Home.css';
+import SearchBar from '../components/SearchBar';
 
 class Home extends React.Component {
   constructor() {
@@ -39,17 +40,18 @@ class Home extends React.Component {
     // console.log(addToCart);
     return (
       <div className="container-home">
-        <Categorias
-          handleSearchCategory={ this.handleSearchCategory }
+        <Header
+          addToCart={ addToCart }
+          getCart={ getCart }
         />
-
-        <div className="container-products">
-          <Header
-            handleSearch={ this.handleSearch }
-            handleSearchSubmit={ this.handleSearchSubmit }
-            pesquisa={ pesquisa }
-            addToCart={ addToCart }
-            getCart={ getCart }
+        <SearchBar
+          handleSearch={ this.handleSearch }
+          handleSearchSubmit={ this.handleSearchSubmit }
+          pesquisa={ pesquisa }
+        />
+        <div className="container-content">
+          <Categorias
+            handleSearchCategory={ this.handleSearchCategory }
           />
           { listaDeProdutos
             ? (

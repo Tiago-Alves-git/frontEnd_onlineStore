@@ -20,37 +20,26 @@ class Header extends React.Component {
   };
 
   render() {
-    const { handleSearch, handleSearchSubmit, pesquisa } = this.props;
-
     return (
       <div>
-        <p>Header</p>
-        <div className="container-search">
-          <input
-            data-testid="query-input"
-            className="input-search"
-            type="text"
-            value={ pesquisa }
-            onChange={ handleSearch }
-          />
-          <button
-            data-testid="query-button"
-            className="button-search"
-            type="button"
-            onClick={ handleSearchSubmit }
-          >
-            Buscar produto
-          </button>
-
-          <Link
-            data-testid="shopping-cart-button"
-            to="/cart"
-          >
-            <BiCart className="icon-cart" />
-          </Link>
-          <p data-testid="shopping-cart-size">
-            { this.countItemsCart() }
-          </p>
+        <div className="Header">
+          <div>
+            <Link to="/" className="linkHome"> Home </Link>
+          </div>
+          <div>
+            <h1 className="titleHeader"> Online Store </h1>
+          </div>
+          <div className="IconCart">
+            <Link
+              data-testid="shopping-cart-button"
+              to="/cart"
+            >
+              <BiCart className="icon-cart" color="white" />
+            </Link>
+            <p data-testid="shopping-cart-size">
+              { this.countItemsCart() }
+            </p>
+          </div>
         </div>
       </div>
     );

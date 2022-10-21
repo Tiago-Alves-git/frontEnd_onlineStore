@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MdOutlineLocalShipping } from 'react-icons/md';
 import { getProductById } from '../services/api';
 import Formulario from '../components/Formulario';
+import Header from '../components/Header';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -32,10 +33,14 @@ class ProductDetails extends React.Component {
 
   render() {
     const { produtos, loading } = this.state;
-    const { handleButton } = this.props;
+    const { handleButton, addToCart, getCart } = this.props;
 
     return (
       <>
+        <Header
+          addToCart={ addToCart }
+          getCart={ getCart }
+        />
         <Link to="/cart">
           <button
             data-testid="shopping-cart-button"

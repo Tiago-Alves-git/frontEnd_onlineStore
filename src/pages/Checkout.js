@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from '../components/Header';
 
 class Checkout extends React.Component {
   constructor() {
@@ -43,7 +44,7 @@ class Checkout extends React.Component {
   };
 
   render() {
-    const { addToCart } = this.props;
+    const { addToCart, getCart } = this.props;
     const {
       name,
       email,
@@ -55,6 +56,10 @@ class Checkout extends React.Component {
     } = this.state;
     return (
       <div>
+        <Header
+          addToCart={ addToCart }
+          getCart={ getCart }
+        />
         <h2>Dados para pagamento</h2>
         <div>
           <h3>Resumo Pedido</h3>

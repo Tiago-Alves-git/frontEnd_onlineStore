@@ -3,6 +3,7 @@ import React from 'react';
 import '../style/Produtos.css';
 import { Link } from 'react-router-dom';
 import { MdOutlineLocalShipping } from 'react-icons/md';
+import { BsFillCartPlusFill } from 'react-icons/bs';
 
 class Produtos extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class Produtos extends React.Component {
             <div
               key={ produto.id }
               style={ { color: '#333' } }
+              className="product"
             >
               <Link
                 style={ { textDecoration: 'none', color: '#333' } }
@@ -22,11 +24,16 @@ class Produtos extends React.Component {
               >
                 <div
                   data-testid="product"
-                  className="product"
                   key={ index }
+                  className="teste"
                 >
-                  <img src={ produto.thumbnail } alt={ produto.title } />
-                  <p>{produto.title}</p>
+                  <p className="titleProduct">{produto.title}</p>
+                  <img
+                    src={ produto.thumbnail }
+                    alt={ produto.title }
+                    className="imagemProdutos"
+                  />
+                  <p>{`R$ ${produto.price}`}</p>
                   { produto.shipping.free_shipping
                   && (
                     <p data-testid="free-shipping">
@@ -35,7 +42,6 @@ class Produtos extends React.Component {
                       Frete Gratis
                     </p>
                   )}
-                  <p>{`R$ ${produto.price}`}</p>
 
                 </div>
               </Link>
@@ -44,10 +50,13 @@ class Produtos extends React.Component {
                 type="button"
                 onClick={ () => { handleButton(produto); } }
                 data-testid="product-add-to-cart"
+                className="cssbuttons-io-button"
               >
                 Adicione ao carrinho
+                <div className="icon">
+                  <BsFillCartPlusFill />
+                </div>
               </button>
-
             </div>
           ))
           : <p>Nenhum produto foi encontrado</p>}
