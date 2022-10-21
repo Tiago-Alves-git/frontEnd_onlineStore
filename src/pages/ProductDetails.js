@@ -90,9 +90,9 @@ class ProductDetails extends React.Component {
               </button>
             </div>
           </div>
-        </div>
-        <div className="container-form">
-          {loading && <Formulario idProduto={ produtos.id } /> }
+          <div className="container-form">
+            {loading && <Formulario idProduto={ produtos.id } /> }
+          </div>
         </div>
       </>
     );

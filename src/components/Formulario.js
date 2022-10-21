@@ -82,10 +82,11 @@ class Formulario extends React.Component {
     // console.log(`teste${idProduto}`);
 
     return (
-      <>
-        <label htmlFor="email">
-          Email
+      <div>
+        <h3>Formulário</h3>
+        <div>
           <input
+            placeholder="Email"
             type="email"
             id="email"
             value={ email }
@@ -94,67 +95,76 @@ class Formulario extends React.Component {
             name="email"
             data-testid="product-detail-email"
           />
-        </label>
+        </div>
         <br />
-        <label htmlFor="nota">
-          De uma nota de 1 a 5 para o produto
-          <br />
-          1
-          {' '}
-          <input
-            id="nota"
-            type="radio"
-            name="nota"
-            value={ 1 }
-            onChange={ this.controlaEstado }
-            data-testid={ `${um}-rating` }
-            required
-          />
-          2
-          {' '}
-          <input
-            id="nota"
-            type="radio"
-            name="nota"
-            value={ 2 }
-            onChange={ this.controlaEstado }
-            data-testid={ `${dois}-rating` }
-            required
-          />
-          3
-          {' '}
-          <input
-            id="nota"
-            type="radio"
-            name="nota"
-            value={ 3 }
-            onChange={ this.controlaEstado }
-            data-testid={ `${tres}-rating` }
-            required
-          />
-          4
-          {' '}
-          <input
-            id="nota"
-            type="radio"
-            name="nota"
-            value={ 4 }
-            onChange={ this.controlaEstado }
-            data-testid={ `${quatro}-rating` }
-            required
-          />
-          5
-          {' '}
-          <input
-            id="nota"
-            type="radio"
-            name="nota"
-            value={ 5 }
-            onChange={ this.controlaEstado }
-            data-testid={ `${cinco}-rating` }
-            required
-          />
-        </label>
+
+        <div className='nota__avaliacao'>
+          <label htmlFor="nota">
+            De um nota de 1 a 5 para o produto
+            <br />
+            1
+            {' '}
+            <input 
+              className='nota__avaliacao__input'
+              id="nota"
+              type="radio"
+              name="nota"
+              value={ 1 }
+              onChange={ this.controlaEstado }
+              data-testid={ `${um}-rating` }
+              required
+            />
+            2
+            {' '}
+            <input
+            className='nota__avaliacao__input'
+              id="nota"
+              type="radio"
+              name="nota"
+              value={ 2 }
+              onChange={ this.controlaEstado }
+              data-testid={ `${dois}-rating` }
+              required
+            />
+            3
+            {' '}
+            <input
+            className='nota__avaliacao__input'
+              id="nota"
+              type="radio"
+              name="nota"
+              value={ 3 }
+              onChange={ this.controlaEstado }
+              data-testid={ `${tres}-rating` }
+              required
+            />
+            4
+            {' '}
+            <input
+            className='nota__avaliacao__input'
+              id="nota"
+              type="radio"
+              name="nota"
+              value={ 4 }
+              onChange={ this.controlaEstado }
+              data-testid={ `${quatro}-rating` }
+              required
+            />
+            5
+            {' '}
+            <input
+            className='nota__avaliacao__input'
+              id="nota"
+              type="radio"
+              name="nota"
+              value={ 5 }
+              onChange={ this.controlaEstado }
+              data-testid={ `${cinco}-rating` }
+              required
+            />
+          </label>
+        </div>
+
         <label htmlFor="comentario">
           Escreva um comentario Sobre o produto
           <textarea
@@ -165,6 +175,8 @@ class Formulario extends React.Component {
             data-testid="product-detail-evaluation"
           />
         </label>
+        <br />
+
         <button
           type="button"
           data-testid="submit-review-btn"
@@ -176,7 +188,7 @@ class Formulario extends React.Component {
         {mensagemErro && <p data-testid="error-msg"> Campos inválidos</p> }
         {localMontado && <AvaliacoesList idProduto={ idProduto } />}
 
-      </>
+      </div>
     );
   }
 }
