@@ -37,3 +37,14 @@
   color: var(--clr-header);
   text-decoration: none;
 }
+
+.count-item-cart {
+  align-items: center;
+  background-color: var(--clr-header);
+  border-radius: 50%;
+  color: var(--bg-header);
+  display: flex;
+  height: 25px;
+  justify-content: center;
+  width: 25px;
+}
