@@ -6,6 +6,7 @@
 
 .container-home {
   display: flex;
+  flex-direction: column;
 }
 
 .container-search {
@@ -15,16 +16,113 @@
   margin: 5px 10px 20px;
 }
 
-.container-products {
+.container-content {
+  display: flex;
   margin: 10px;
-  width: 80%;
+  width: 100%;
+}
+
+.container-products {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 80%;
+}
+
+.products-screen {
+  height: 500px;
+  width: 500px;
+}
+
+.imagemProdutos {
+  border-radius: 50%;
+  height: 150px;
+  margin-bottom: 20px;
+  width: 150px;
+}
+
+.titleProduct {
+  margin-bottom: 50px;
+  max-height: 50px;
+}
+
+.product {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(22, 13, 11, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  width: 250px;
+}
+
+/* From uiverse.io by @adamgiebl */
+.cssbuttons-io-button {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 0.9em;
+  box-shadow: inset 0 0 1.6em -0.6em #000000ea;
+  color: rgb(255, 195, 0);
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 500;
+  height: 2.8em;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  padding-right: 3.3em;
+  position: relative;
+}
+
+.cssbuttons-io-button .icon {
+  align-items: center;
+  background: white;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #9bc7a1;
+  display: flex;
+  height: 2.2em;
+  justify-content: center;
+  margin-left: 1em;
+  position: absolute;
+  right: 0.3em;
+  transition: all 0.3s;
+  width: 2.2em;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  color: black;
+  transition: transform 0.3s;
+  width: 1.1em;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+.product:hover, .product:focus {
+  transform: scale(1.05);
 }
 
 .input-search {
   border-radius: 10px;
   height: 30px;
   padding: 5px 10px;
-  width: 80%;
+  width: 30%;
 }
 
 .button-search {
@@ -41,10 +139,8 @@
 }
 
 .text-default {
-  align-items: center;
-  display: flex;
-  height: 80vh;
-  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 .container-category {
