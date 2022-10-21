@@ -54,7 +54,7 @@ class Produtos extends React.Component {
               >
                 Adicione ao carrinho
                 <div className="icon">
-                  <BsFillCartPlusFill />
+                  <BsFillCartPlusFill className="icon-add-to-cart" />
                 </div>
               </button>
             </div>
