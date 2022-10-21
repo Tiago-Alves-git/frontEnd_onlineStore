@@ -36,9 +36,11 @@ class Header extends React.Component {
             >
               <BiCart className="icon-cart" />
             </Link>
-            <p data-testid="shopping-cart-size">
-              { this.countItemsCart() }
-            </p>
+            <div className="count-item-cart">
+              <p data-testid="shopping-cart-size">
+                { this.countItemsCart() }
+              </p>
+            </div>
           </div>
         </div>
       </div>
