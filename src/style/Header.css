@@ -1,13 +1,21 @@
+:root {
+
+  --bg-header: rgb(255, 195, 0);
+
+  --clr-header: rgb(0, 60, 255);
+
+  /* --clr-header: whitesmoke; */
+}
+
 .container-header {
-  background-color: green;
   height: 60px;
   width: 100%;
 }
 
 .Header {
   align-items: center;
-  background-color: grey;
-  color: whitesmoke;
+  background-color: var(--bg-header);
+  color: var(--clr-header);
   display: flex;
   height: 60px;
   justify-content: space-around;
@@ -19,7 +27,13 @@
   display: flex;
 }
 
+.icon-cart {
+  color: var(--clr-header);
+  height: 30px;
+  width: 50px;
+}
+
 .linkHome {
-  color: whitesmoke;
+  color: var(--clr-header);
   text-decoration: none;
 }
