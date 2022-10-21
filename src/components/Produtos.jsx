@@ -33,7 +33,7 @@ class Produtos extends React.Component {
                     alt={ produto.title }
                     className="imagemProdutos"
                   />
-                  <p>{`R$ ${produto.price}`}</p>
+                  <p>{`R$ ${Number(produto.price).toFixed(2)}`}</p>
                   { produto.shipping.free_shipping
                   && (
                     <p data-testid="free-shipping">
