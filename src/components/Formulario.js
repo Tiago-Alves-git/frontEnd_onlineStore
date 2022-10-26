@@ -98,14 +98,14 @@ class Formulario extends React.Component {
         </div>
         <br />
 
-        <div className='nota__avaliacao'>
+        <div className="nota__avaliacao">
           <label htmlFor="nota">
             De um nota de 1 a 5 para o produto
             <br />
             1
             {' '}
-            <input 
-              className='nota__avaliacao__input'
+            <input
+              className="nota__avaliacao__input"
               id="nota"
               type="radio"
               name="nota"
@@ -117,7 +117,7 @@ class Formulario extends React.Component {
             2
             {' '}
             <input
-            className='nota__avaliacao__input'
+              className="nota__avaliacao__input"
               id="nota"
               type="radio"
               name="nota"
@@ -129,7 +129,7 @@ class Formulario extends React.Component {
             3
             {' '}
             <input
-            className='nota__avaliacao__input'
+              className="nota__avaliacao__input"
               id="nota"
               type="radio"
               name="nota"
@@ -141,7 +141,7 @@ class Formulario extends React.Component {
             4
             {' '}
             <input
-            className='nota__avaliacao__input'
+              className="nota__avaliacao__input"
               id="nota"
               type="radio"
               name="nota"
@@ -153,7 +153,7 @@ class Formulario extends React.Component {
             5
             {' '}
             <input
-            className='nota__avaliacao__input'
+              className="nota__avaliacao__input"
               id="nota"
               type="radio"
               name="nota"
